@@ -1,0 +1,180 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "Source": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "Processor": {
+                    "type": "string"
+                },
+                "Properties": {
+                    "type": "object",
+                    "properties": {
+                        "File": {
+                            "type": "object",
+                            "properties": {
+                                "FilePath": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "FilePath"
+                            ]
+                        },
+                        "InMemory": {
+                            "type": "object",
+                            "properties": {
+                                "DataFrameName": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "DataFrameName"
+                            ]
+                        }
+                    },
+                    "oneOf": [
+                        {
+                            "required": [
+                                "File"
+                            ]
+                        },
+                        {
+                            "required": [
+                                "InMemory"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "Name",
+                "Processor",
+                "Properties"
+            ]
+        },
+        "Backend": {
+            "type": "object",
+            "properties": {
+                "ExpectationSuiteName": {
+                    "type": "string"
+                },
+                "Filesystem": {
+                    "type": "object",
+                    "properties": {
+                        "WorkDir": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "WorkDir"
+                    ]
+                },
+                "GCS": {
+                    "type": "object",
+                    "properties": {
+                        "Project": {
+                            "type": "string"
+                        },
+                        "Bucket": {
+                            "type": "string"
+                        },
+                        "Prefix": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "Project",
+                        "Bucket"
+                    ]
+                },
+                "S3": {
+                    "type": "object",
+                    "properties": {
+                        "Bucket": {
+                            "type": "string"
+                        },
+                        "Prefix": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "Bucket"
+                    ]
+                }
+            },
+            "required": [
+                "ExpectationSuiteName"
+            ],
+            "oneOf": [
+                {
+                    "required": [
+                        "Filesystem"
+                    ]
+                },
+                {
+                    "required": [
+                        "GCS"
+                    ]
+                },
+                {
+                    "required": [
+                        "S3"
+                    ]
+                }
+            ]
+        },
+        "Report": {
+            "type": "object",
+            "properties": {
+                "NamingRegex": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "NamingRegex"
+            ]
+        },
+        "Outputs": {
+            "type": "object",
+            "properties": {
+                "GenerateDocs": {
+                    "type": "boolean"
+                },
+                "StoreResults": {
+                    "type": "boolean"
+                },
+                "ResultsDict": {
+                    "type": "object",
+                    "properties": {
+                        "Save": {
+                            "type": "boolean"
+                        },
+                        "Format": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "Save",
+                        "Format"
+                    ]
+                }
+            },
+            "required": [
+                "GenerateDocs",
+                "StoreResults",
+                "ResultsDict"
+            ]
+        }
+    },
+    "required": [
+        "Source",
+        "Backend",
+        "Report",
+        "Outputs"
+    ]
+}
