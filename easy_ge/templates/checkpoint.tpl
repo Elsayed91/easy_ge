@@ -8,13 +8,7 @@ validations:
       datasource_name: {{ Source.Name }}
       data_connector_name: default_runtime_data_connector_name
       data_asset_name: {{ Source.Name }}Data
-      batch_identifiers:
-        default_identifier_name: default_identifier
-      {% if Source.Properties.File %}
-      runtime_parameters:
-        path: {{ Source.Properties.File.FilePath }}
-      {% endif %}
-    expectation_suite_name: {{ Source.Name }}Tests
+    expectation_suite_name: {{ Backend.ExpectationSuiteName }}
     action_list:
       - name: store_validation_result
         action:
@@ -27,8 +21,8 @@ validations:
         action:
           class_name: UpdateDataDocsAction
       {% endif %}
-    {% if Outputs.ResultsDict.Save %}
+    {% if Outputs.SaveSummaryTableAsCSV %}
     runtime_configuration:
       result_format:
-        result_format: {{ Outputs.ResultsDict.Format }}
+        result_format: COMPLETE
     {% endif %}

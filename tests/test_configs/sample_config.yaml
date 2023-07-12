@@ -1,0 +1,25 @@
+Source:
+  Name: MyTaxiDataxd # An assigned name for the data source that will be used
+  Processor: Pandas # Can be "SparkDF" or "Pandas"
+  Properties: 
+    # InMemory:
+    #   DataFrameName: df # Only for "FileSystem"
+    File:
+      FilePath: "gs://raw-0b6ed91423/yellow/yellow_tripdata_2020-09.parquet" # Only for "FileSystem"
+
+Backend:
+  ExpectationSuiteName: yellow
+  # Filesystem:
+  #   WorkDir: "/home/lestrang/wrapexp"
+  GCS:
+    Project: Stellarismusv5
+    Bucket: docs-27d8e4c12f
+    Prefix: great_expectations
+
+Report:
+  NamingRegex: "%Y%m%d%H%M-yellow" # Report naming style
+
+Outputs:
+  GenerateDocs: True # Whether to generate data docs
+  SaveSummaryTableAsCSV: True
+  FailureThreshold: 90

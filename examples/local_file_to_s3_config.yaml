@@ -1,0 +1,18 @@
+Source:
+  Name: MyData
+  Processor: Pandas
+  Properties: 
+    File:
+      FilePath: "/path/to/mydata.parquet"
+
+Backend:
+  ExpectationSuiteName: default
+  S3:
+    Bucket: "my_bucket"
+
+Report:
+  NamingRegex: "%Y%m%d%H%M-mydata"
+
+Outputs:
+  GenerateDocs: True
+  SaveSummaryTableAsCSV: True

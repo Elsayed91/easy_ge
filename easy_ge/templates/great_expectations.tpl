@@ -24,11 +24,11 @@ stores:
       class_name: TupleGCSStoreBackend
       project: {{ Backend.GCS.Project }}
       bucket: {{ Backend.GCS.Bucket }}
-      prefix: {{ Backend.GCS.Prefix | default('expectations', true) }}
+      prefix: {{ Backend.GCS.Prefix | default('', true) }}/expectations
       {% elif Backend.S3 %}
       class_name: TupleS3StoreBackend
       bucket: {{ Backend.S3.Bucket }}
-      prefix: {{ Backend.S3.Prefix | default('expectations', true) }}
+      prefix: {{ Backend.S3.Prefix | default('', true) }}/expectations
       {% endif %}
   validations_store:
     class_name: ValidationsStore
@@ -40,28 +40,14 @@ stores:
       class_name: TupleGCSStoreBackend
       project: {{ Backend.GCS.Project }}
       bucket: {{ Backend.GCS.Bucket }}
-      prefix: {{ Backend.GCS.Prefix | default('validations', true) }}
+      prefix: {{ Backend.GCS.Prefix | default('', true) }}/validations
       {% elif Backend.S3 %}
       class_name: TupleS3StoreBackend
       bucket: {{ Backend.S3.Bucket }}
-      prefix: {{ Backend.S3.Prefix | default('validations', true) }}
+      prefix: {{ Backend.S3.Prefix | default('', true) }}/validations
       {% endif %}
   evaluation_parameter_store:
     class_name: EvaluationParameterStore
-    store_backend:
-      {% if Backend.Filesystem %}
-      class_name: TupleFilesystemStoreBackend
-      base_directory: {{ Backend.Filesystem.WorkDir }}/evaluation_parameters/
-      {% elif Backend.GCS %}
-      class_name: TupleGCSStoreBackend
-      project: {{ Backend.GCS.Project }}
-      bucket: {{ Backend.GCS.Bucket }}
-      prefix: {{ Backend.GCS.Prefix | default('evaluation_parameters', true) }}
-      {% elif Backend.S3 %}
-      class_name: TupleS3StoreBackend
-      bucket: {{ Backend.S3.Bucket }}
-      prefix: {{ Backend.S3.Prefix | default('evaluation_parameters', true) }}
-      {% endif %}
   checkpoint_store:
     class_name: CheckpointStore
     store_backend:
@@ -72,11 +58,11 @@ stores:
       class_name: TupleGCSStoreBackend
       project: {{ Backend.GCS.Project }}
       bucket: {{ Backend.GCS.Bucket }}
-      prefix: {{ Backend.GCS.Prefix | default('checkpoints', true) }}
+      prefix: {{ Backend.GCS.Prefix | default('', true) }}/checkpoints
       {% elif Backend.S3 %}
       class_name: TupleS3StoreBackend
       bucket: {{ Backend.S3.Bucket }}
-      prefix: {{ Backend.S3.Prefix | default('checkpoints', true) }}
+      prefix: {{ Backend.S3.Prefix | default('', true) }}/checkpoints
       {% endif %}
 
 expectations_store_name: expectations_store
@@ -95,11 +81,11 @@ data_docs_sites:
       class_name: TupleGCSStoreBackend
       project: {{ Backend.GCS.Project }}
       bucket: {{ Backend.GCS.Bucket }}
-      prefix: {{ Backend.GCS.Prefix | default('docs', true) }}
+      prefix: {{ Backend.GCS.Prefix | default('', true) }}/docs
       {% elif Backend.S3 %}
       class_name: TupleS3StoreBackend
       bucket: {{ Backend.S3.Bucket }}
-      prefix: {{ Backend.S3.Prefix | default('docs', true) }}
+      prefix: {{ Backend.S3.Prefix | default('', true) }}/docs
       {% endif %}
     site_index_builder:
       class_name: DefaultSiteIndexBuilder

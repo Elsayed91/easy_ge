@@ -1,6 +1,9 @@
+# great_expectations_wrapper/helpers.py
+
+import copy
 import json
 import os
-from typing import Any
+from typing import Any, Union
 
 import yaml
 from jinja2 import Template
@@ -24,7 +27,7 @@ class ConfigLoader:
         self.config_path = config_path
         self.schema_path = schema_path
 
-    def substitute_env_variables(self, data):
+    def substitute_env_variables(self, data: Union[dict, list, str]) -> Union[dict, list, str]:
         """
         Recursively substitutes the values of environmental variables
         in the given data structure.
@@ -47,7 +50,7 @@ class ConfigLoader:
             data = os.getenv(var_name)
         return data
 
-    def load_config(self):
+    def load_config(self) -> dict[str, Any]:
         """
         Loads and parses the YAML configuration file,
         substituting the values of environmental variables.
@@ -72,7 +75,6 @@ class ConfigLoader:
         except JsonSchemaValidationError as err:
             raise ValidationError(f"Configuration validation error: {err.message}")
 
-        print("Loaded and Validated Successfully.")
         return data
 
 class TemplateHandler:
@@ -83,31 +85,21 @@ class TemplateHandler:
     def __init__(self, template_path: str):
         self.template_path = template_path
 
-    def load_template(self) -> Template:
+    def _load_and_render_template(self, context: dict) -> str:
         """
-        Load a Jinja2 template from a file.
-
-        Returns:
-            A Jinja2 Template object.
-        """
-        with open(self.template_path, "r") as template_file:
-            template = Template(template_file.read())
-        return template
-
-    def render_template(self, template: Template, context: dict) -> str:
-        """
-        Render a Jinja2 template with a given context.
+        Load a Jinja2 template from a file and render it with a given context.
 
         Args:
-            template: The Jinja2 Template object.
             context: The context to render the template with.
 
         Returns:
             The rendered template as a string.
         """
+        with open(self.template_path, "r") as template_file:
+            template = Template(template_file.read())
         return template.render(**context)
 
-    def convert_to_dict(self, config_str: str) -> dict:
+    def _convert_yaml_to_dict(self, config_str: str) -> dict:
         """
         Convert a YAML configuration string to a dictionary.
 
@@ -129,6 +121,5 @@ class TemplateHandler:
         Returns:
             The processed template as a dictionary.
         """
-        template = self.load_template()
-        rendered_template = self.render_template(template, context)
-        return self.convert_to_dict(rendered_template)
+        rendered_template = self._load_and_render_template(context)
+        return self._convert_yaml_to_dict(rendered_template)

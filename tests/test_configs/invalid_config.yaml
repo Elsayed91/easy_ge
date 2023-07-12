@@ -1,0 +1,13 @@
+# tests/test_configs/invalid_config.yaml
+
+Source:
+  Name: invalid_config
+  Processor: SparkDF
+  Properties: 
+    File:
+      FilePath: "gs://invalid_config.yaml"
+Backend:
+  ExpectationSuiteName: invalid
+  GCS:
+    Project: InvalidProject
+    Bucket: invalid-bucket

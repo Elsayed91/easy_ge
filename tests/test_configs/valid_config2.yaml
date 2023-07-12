@@ -1,0 +1,17 @@
+Source:
+  Name: Test
+  Processor: Test
+  Properties:
+    File:
+      FilePath: "test.csv"
+Outputs:
+  GenerateDocs: True
+  SaveSummaryTableAsCSV: True
+Backend:
+  DatasourceName: my_datasource
+  ExpectationSuiteName: test_suite
+  DataConnectorName: my_data_connector
+  DataAssetName: test_data_asset
+
+Report:
+  NamingRegex: "%Y%m%d%H%M-yellow" # Report naming style

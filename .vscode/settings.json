@@ -7,9 +7,23 @@
         "**/.DS_Store": true,
         "**/Thumbs.db": true,
         "**/.trunk/*out": true,
+        "__pycache__": true,
+        ".pytest_cache": true,
+        "LICENSE": true,
+        "poetry.lock": true,
+        "readme.md": true,
+        ".pre-commit-config.yaml": true,
+        "gcp_key_spark.json": true,
         ".vscode": true
     },
     "hide-files.files": [
+        "__pycache__",
+        ".pytest_cache",
+        "LICENSE",
+        "poetry.lock",
+        "readme.md",
+        ".pre-commit-config.yaml",
+        "gcp_key_spark.json",
         ".vscode"
     ]
 }

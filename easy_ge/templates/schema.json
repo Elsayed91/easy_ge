@@ -145,29 +145,17 @@
                 "GenerateDocs": {
                     "type": "boolean"
                 },
-                "StoreResults": {
+                "SaveSummaryTableAsCSV": {
                     "type": "boolean"
                 },
-                "ResultsDict": {
-                    "type": "object",
-                    "properties": {
-                        "Save": {
-                            "type": "boolean"
-                        },
-                        "Format": {
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "Save",
-                        "Format"
-                    ]
+                "FailureThreshold": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
                 }
             },
             "required": [
-                "GenerateDocs",
-                "StoreResults",
-                "ResultsDict"
+                "GenerateDocs"
             ]
         }
     },

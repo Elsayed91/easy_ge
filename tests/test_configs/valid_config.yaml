@@ -1,0 +1,24 @@
+Source:
+  Name: valid_config # An assigned name for the data source that will be used
+  Processor: Pandas # Can be "SparkDF" or "Pandas"
+  Properties: 
+    # InMemory:
+    #   DataFrameName: df # Only for "FileSystem"
+    File:
+      FilePath: "gs://valid_config.yaml" # Only for "FileSystem"
+
+Backend:
+  ExpectationSuiteName: valid
+  # Filesystem:
+  #   WorkDir: "/home/lestrang/wrapexp"
+  GCS:
+    Project: ValidProject
+    Bucket: valid-bucket
+
+Report:
+  NamingRegex: "%Y%m%d%H%M-yellow" # Report naming style
+
+Outputs:
+  GenerateDocs: True # Whether to generate data docs
+
+

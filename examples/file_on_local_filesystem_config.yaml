@@ -1,0 +1,18 @@
+Source:
+  Name: MyData
+  Processor: Pandas
+  Properties: 
+    File:
+      FilePath: "/path/to/mydata.csv"
+
+Backend:
+  ExpectationSuiteName: default
+  Filesystem:
+    WorkDir: "/path/to/workdir"
+
+Report:
+  NamingRegex: "%Y%m%d%H%M-mydata"
+
+Outputs:
+  GenerateDocs: True
+  SaveSummaryTableAsCSV: True

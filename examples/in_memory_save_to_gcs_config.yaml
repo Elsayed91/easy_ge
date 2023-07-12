@@ -1,0 +1,19 @@
+Source:
+  Name: MyData
+  Processor: Pandas
+  Properties: 
+    InMemory:
+      DataFrameName: "my_df"
+
+Backend:
+  ExpectationSuiteName: default
+  GCS:
+    Project: "my_project"
+    Bucket: "my_bucket"
+
+Report:
+  NamingRegex: "%Y%m%d%H%M-mydata"
+
+Outputs:
+  GenerateDocs: True
+  SaveSummaryTableAsCSV: True

@@ -1,0 +1,68 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "Source": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "Processor": {
+                    "type": "string"
+                },
+                "Properties": {
+                    "type": "object"
+                }
+            },
+            "required": [
+                "Name",
+                "Processor",
+                "Properties"
+            ]
+        },
+        "Outputs": {
+            "type": "object",
+            "properties": {
+                "GenerateDocs": {
+                    "type": "boolean"
+                },
+                "SaveSummaryTableAsCSV": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "GenerateDocs",
+                "SaveSummaryTableAsCSV"
+            ]
+        },
+        "Backend": {
+            "type": "object",
+            "properties": {
+                "DatasourceName": {
+                    "type": "string"
+                },
+                "ExpectationSuiteName": {
+                    "type": "string"
+                },
+                "DataConnectorName": {
+                    "type": "string"
+                },
+                "DataAssetName": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "DatasourceName",
+                "ExpectationSuiteName",
+                "DataConnectorName",
+                "DataAssetName"
+            ]
+        }
+    },
+    "required": [
+        "Source",
+        "Outputs",
+        "Backend"
+    ]
+}
