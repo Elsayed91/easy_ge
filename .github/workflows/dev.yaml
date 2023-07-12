@@ -1,0 +1,33 @@
+name: CI/CD Pipeline (Dev Branch)
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.10, 3.11]
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'poetry'
+    - name: Install poetry and dependencies
+      run: |
+        pip install poetry
+        poetry install  --dev --all-extras
+    - name: Lint with flake8
+      run: |
+        poetry run flake8 .
+    - name: Check import order with isort
+      run: |
+        poetry run isort --check-only --diff .
+    - name: Run tests
+      run: |
+        poetry run pytest tests/ -s
+
