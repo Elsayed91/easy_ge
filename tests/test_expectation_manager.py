@@ -9,13 +9,13 @@ from easy_ge.expectation_manager import ExpectationManager
 from great_expectations.data_context import BaseDataContext
 from great_expectations.exceptions import GreatExpectationsError
 
-sys.path.append('great_expectations_wrapper')
+sys.path.append('easy_ge')
 
 
 
 
-@patch("great_expectations_wrapper.expectation_manager.BaseDataContext")
-@patch("great_expectations_wrapper.helpers.TemplateHandler")
+@patch("easy_ge.expectation_manager.BaseDataContext")
+@patch("easy_ge.helpers.TemplateHandler")
 def test_prepare_data_context_2(mocked_template_handler_class, mocked_data_context_class):
     # Create a mock BaseDataContext instance
     mocked_data_context = MagicMock()
@@ -36,8 +36,8 @@ def test_prepare_data_context_2(mocked_template_handler_class, mocked_data_conte
     mocked_data_context_class.assert_called_once()
 
 
-@patch("great_expectations_wrapper.expectation_manager.BaseDataContext")
-@patch("great_expectations_wrapper.helpers.TemplateHandler")
+@patch("easy_ge.expectation_manager.BaseDataContext")
+@patch("easy_ge.helpers.TemplateHandler")
 def test_prepare_checkpoint(mocked_template_handler_class, mocked_data_context_class):
     # Create a mock BaseDataContext instance
     mocked_data_context = MagicMock()
@@ -58,8 +58,8 @@ def test_prepare_checkpoint(mocked_template_handler_class, mocked_data_context_c
     mocked_data_context.add_checkpoint.assert_called_once()
 
 
-@patch("great_expectations_wrapper.expectation_manager.BaseDataContext")
-@patch("great_expectations_wrapper.helpers.TemplateHandler")
+@patch("easy_ge.expectation_manager.BaseDataContext")
+@patch("easy_ge.helpers.TemplateHandler")
 def test_run_checkpoint(mocked_template_handler_class, mocked_data_context_class):
     # Create a mock BaseDataContext instance
     mocked_data_context = MagicMock()
@@ -82,8 +82,8 @@ def test_run_checkpoint(mocked_template_handler_class, mocked_data_context_class
 
 
 
-@patch("great_expectations_wrapper.expectation_manager.BaseDataContext")
-@patch("great_expectations_wrapper.helpers.TemplateHandler")
+@patch("easy_ge.expectation_manager.BaseDataContext")
+@patch("easy_ge.helpers.TemplateHandler")
 def test_prepare_checkpoint_with_invalid_config(mocked_template_handler_class, mocked_data_context_class):
     # Create a mock BaseDataContext instance
     mocked_data_context = MagicMock()
@@ -109,8 +109,8 @@ def test_prepare_checkpoint_with_invalid_config(mocked_template_handler_class, m
     with pytest.raises(KeyError):
         expectation_manager.prepare_checkpoint(config, data_context)
 
-@patch("great_expectations_wrapper.expectation_manager.BaseDataContext")
-@patch("great_expectations_wrapper.helpers.TemplateHandler")
+@patch("easy_ge.expectation_manager.BaseDataContext")
+@patch("easy_ge.helpers.TemplateHandler")
 def test_run_checkpoint_with_invalid_config(mocked_template_handler_class, mocked_data_context_class):
     # Create a mock BaseDataContext instance
     mocked_data_context = MagicMock()

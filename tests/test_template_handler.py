@@ -7,7 +7,7 @@ from jinja2 import Template, TemplateNotFound
 
 def test_load_and_render_template():
     # Test a valid template
-    template_path = "templates/great_expectations.tpl"
+    template_path = "easy_ge/templates/great_expectations.tpl"
     template_handler = TemplateHandler(template_path)
     context = {
         "Source": {"Name": "Test", "Processor": "Test", "Properties": {"File": {"FilePath": "test.yaml"}}},
@@ -42,7 +42,7 @@ def test_convert_yaml_to_dict():
     assert config_dict["Source"]["Name"] == "Test"
 
 def test_process_template():
-    template_path = "templates/great_expectations.tpl"
+    template_path = "easy_ge/templates/great_expectations.tpl"
     context = {
         "Source": {"Name": "Test", "Processor": "Test", "Properties": {"File": {"FilePath": "test.yaml"}}},
         "Backend": {"ExpectationSuiteName": "Test", "GCS": {"Project": "Test", "Bucket": "Test"}},
