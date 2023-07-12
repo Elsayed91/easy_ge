@@ -13,14 +13,13 @@ jobs:
         python-version: [3.10, 3.11]
     steps:
     - uses: actions/checkout@v3
+    - name: Install poetry
+      run: pipx install poetry
     - uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
         cache: 'poetry'
-    - name: Install poetry and dependencies
-      run: |
-        pip install poetry
-        poetry install  --dev --all-extras
+    - run: poetry install --dev --all-extras
     - name: Lint with flake8
       run: |
         poetry run flake8 .
@@ -30,4 +29,5 @@ jobs:
     - name: Run tests
       run: |
         poetry run pytest tests/ -s
+
 
