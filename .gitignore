@@ -12,3 +12,4 @@ images/gewrap.png:Zone.Identifier
 *.pyc
 __pycache__/
 .vscode
+.vscode/
