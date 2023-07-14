@@ -32,7 +32,7 @@ jobs:
         poetry run bash tests/integration/run_integration.sh
 
   build-docker:
-    # needs: test
+    needs: test
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -52,7 +52,7 @@ jobs:
         tags: ${{ secrets.DOCKER_HUB_USERNAME }}/easy_ge:latest
 
   publish:
-    # needs: test
+    needs: test
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
