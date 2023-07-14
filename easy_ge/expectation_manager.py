@@ -12,7 +12,7 @@ from great_expectations.data_context import (AbstractDataContext,
 from great_expectations.data_context.types.base import DataContextConfig
 
 try:
-    from .helpers import TemplateHandler
+    from easy_ge.helpers import TemplateHandler
 except:
     from helpers import TemplateHandler
 

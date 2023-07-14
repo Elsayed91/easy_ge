@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "easy_ge"
-version = "0.1.6"
+version = "0.1.8"
 description = "A package that abstracts the complexity of Great Expectations away. At least for straight forward use cases."
 authors = ["Elsayed91 <elsayed.is@outlook.com>"]
 readme = "readme.md"

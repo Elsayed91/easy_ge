@@ -10,8 +10,8 @@ try:
     from expectation_manager import ExpectationManager
     from helpers import ConfigLoader, TemplateHandler
 except:
-    from .expectation_manager import ExpectationManager
-    from .helpers import ConfigLoader, TemplateHandler  
+    from easy_ge.expectation_manager import ExpectationManager
+    from easy_ge.helpers import ConfigLoader, TemplateHandler  
 
 ###############################
 # ONLY FOR LOCAL Testing
