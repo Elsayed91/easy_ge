@@ -16,7 +16,10 @@ jobs:
       with:
         python-version: '3.10'
         cache: 'poetry'
-    - run: poetry install --all-extras
+    - run: 
+        poetry install --all-extras
+        poetry add localstack awscli-local
+          
     - name: Lint with flake8
       run: |
         poetry run flake8 . || true
