@@ -8,6 +8,13 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    services:
+      localstack:
+        image: localstack/localstack
+        env:
+          SERVICES: s3
+        ports:
+          - 4572:4572
     steps:
     - uses: actions/checkout@v3
     - name: Install poetry
@@ -18,8 +25,8 @@ jobs:
         cache: 'poetry'
     - run: 
         poetry install --all-extras
-        poetry add localstack awscli-local
-          
+
+
     - name: Lint with flake8
       run: |
         poetry run flake8 . || true

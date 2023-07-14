@@ -2,7 +2,7 @@
 set -e
 
 # docker pull localstack/localstack
-SERVICES=s3 localstack start -d
+poetry run SERVICES=s3 localstack start -d
 localstack wait -t 30 
 echo "Startup complete"
 
