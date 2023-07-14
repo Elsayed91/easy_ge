@@ -13,3 +13,7 @@ images/gewrap.png:Zone.Identifier
 __pycache__/
 .vscode
 .vscode/
+tests/test_configs/checkpoints
+tests/test_configs/docs
+tests/test_configs/validations
+tests/test_configs/expectations

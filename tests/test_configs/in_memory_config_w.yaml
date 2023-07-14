@@ -1,0 +1,15 @@
+Backend:
+  ExpectationSuiteName: yellow
+  Filesystem:
+    WorkDir: /home/lestrang/wrapexp/tests/test_configs
+Outputs:
+  GenerateDocs: false
+  SaveSummaryTableAsCSV: false
+Report:
+  NamingRegex: .*
+Source:
+  Name: InMemoryTest
+  Processor: Pandas
+  Properties:
+    InMemory:
+      DataFrameName: df

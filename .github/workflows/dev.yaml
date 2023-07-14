@@ -26,3 +26,7 @@ jobs:
     - name: Run tests
       run: |
         poetry run pytest tests/ -s
+    - name: Integration Test with Localstack
+      run: |
+        docker pull localstack/localstack         # Make sure to pull the latest version of the image
+        bash tests/integration/run_integration.sh

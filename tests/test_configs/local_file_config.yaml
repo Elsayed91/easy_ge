@@ -1,0 +1,18 @@
+# local_file_config.yaml
+Source:
+  Name: LocalTest
+  Processor: Pandas
+  Properties:
+    File:
+      FilePath: tests/test_configs/sample_file.csv
+Backend:
+  ExpectationSuiteName: yellow
+  Filesystem:
+    WorkDir: ./tests/test_configs
+Report:
+  NamingRegex: '.*'
+Outputs:
+  GenerateDocs: false
+  SaveSummaryTableAsCSV: false
+
+

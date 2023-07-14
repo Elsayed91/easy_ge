@@ -16,7 +16,15 @@ try:
 except:
     from helpers import TemplateHandler
 
+import logging
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.StreamHandler()
+    ]
+)
 
 class ExpectationManager:
     """
@@ -38,7 +46,7 @@ class ExpectationManager:
         Returns:
             A BaseDataContext object.
         """
-
+        logging.info("Preparing data context...")
         ge_config = self.ge_template_handler.process_template(config)
         return BaseDataContext(DataContextConfig(**ge_config))
 
@@ -50,8 +58,8 @@ class ExpectationManager:
             config: The configuration.
             data_context: The data context.
         """
+        logging.info("Preparing checkpoint...")
         cp_config = self.cp_template_handler.process_template(config)
-        cp_name = (config["Source"]["Name"]).lower() + '_cp'
         data_context.add_checkpoint(**cp_config)
 
     def run_checkpoint(self, config: dict[str, Any], data_context: AbstractDataContext) -> dict[str, Any]:
@@ -65,6 +73,7 @@ class ExpectationManager:
         Returns:
             A dictionary containing the result of running the checkpoint.
         """
+        logging.info("Running checkpoint...")
         cp_name = (config["Source"]["Name"]).lower() + '_cp'
         batch_type, batch_input = self.get_batch_request_parameters(config)
         result = dict(
@@ -88,6 +97,7 @@ class ExpectationManager:
         Args:
             data_context: The data context.
         """
+        logging.info("Building data docs...")
         data_context.build_data_docs()
 
 
@@ -102,6 +112,7 @@ class ExpectationManager:
         Returns:
             A DataFrame containing the summary table.
         """
+        logging.info("Generating summary table...")
         results = validation_results['_run_results'][next(iter(validation_results['_run_results']))]['validation_result']['results']
 
         # Define a list to store each row of the summary table
@@ -139,7 +150,9 @@ class ExpectationManager:
         print(f"Success rate: {success_rate}%")
         print(f"Number of evaluated expectations: {num_evaluated_expectations}")
         if success_threshold is not None and success_rate < success_threshold:
-            raise Exception(f"Validation failed: success rate {success_rate}% is below the threshold {success_threshold}%")
+            error_message = f"Validation failed: success rate {success_rate}% is below the threshold {success_threshold}%"
+            logging.error(error_message)
+            raise Exception(error_message)
 
         return df
     
@@ -154,6 +167,7 @@ class ExpectationManager:
         Returns:
             A tuple containing the batch request parameter key and value.
         """
+        logging.info("Getting batch request parameters...")
         properties = config.get("Source", {}).get("Properties", {})
         
         if "InMemory" in properties:
@@ -164,5 +178,5 @@ class ExpectationManager:
         
         if "File" in properties:
             return "path", properties["File"].get("FilePath")
-        
+        logging.warning("No batch request parameters found in the configuration.")
         return None, None

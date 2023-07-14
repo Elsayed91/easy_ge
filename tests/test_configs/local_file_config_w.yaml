@@ -1,0 +1,15 @@
+Backend:
+  ExpectationSuiteName: yellow
+  Filesystem:
+    WorkDir: /home/lestrang/wrapexp/tests/test_configs
+Outputs:
+  GenerateDocs: false
+  SaveSummaryTableAsCSV: false
+Report:
+  NamingRegex: .*
+Source:
+  Name: LocalTest
+  Processor: Pandas
+  Properties:
+    File:
+      FilePath: /home/lestrang/wrapexp/tests/test_configs/sample_file.csv

@@ -1,7 +1,5 @@
 name: CI/CD Pipeline
 
-name: CI/CD Pipeline
-
 on: 
   push:
     branches:
@@ -31,6 +29,10 @@ jobs:
       run: |
         poetry run isort --check-only --diff .
     - run: poetry run pytest tests/ -s
+    - name: Integration Test with Localstack
+      run: |
+        docker pull localstack/localstack         # Make sure to pull the latest version of the image
+        bash tests/integration/run_integration.sh
 
   build-docker:
     needs: test

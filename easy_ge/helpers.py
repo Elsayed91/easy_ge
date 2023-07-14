@@ -1,7 +1,5 @@
-# great_expectations_wrapper/helpers.py
-
-import copy
 import json
+import logging
 import os
 from typing import Any, Union
 
@@ -10,6 +8,13 @@ from jinja2 import Template
 from jsonschema import ValidationError as JsonSchemaValidationError
 from jsonschema import validate
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.StreamHandler()
+    ]
+)
 
 class ValidationError(Exception):
     """Validation Unsuccessful"""
@@ -47,7 +52,8 @@ class ConfigLoader:
         elif isinstance(data, str) and data.startswith("${") and data.endswith("}"):
             # This is an environmental variable. Substitute its value.
             var_name = data[2:-1]
-            data = os.getenv(var_name)
+            logging.info(f"Substituting environment variable: {var_name}")
+            data = os.getenv(var_name) # type: ignore
         return data
 
     def load_config(self) -> dict[str, Any]:
@@ -58,6 +64,7 @@ class ConfigLoader:
         Returns:
             The parsed configuration data with the environmental variables substituted.
         """
+        logging.info("Loading and validating configuration...")
         # Load the YAML file
         with open(self.config_path, "r") as f:
             data = yaml.safe_load(f)
@@ -72,8 +79,11 @@ class ConfigLoader:
         # Validate the configuration against the schema
         try:
             validate(data, schema)
+            logging.info("Configuration validation successful.")
         except JsonSchemaValidationError as err:
-            raise ValidationError(f"Configuration validation error: {err.message}")
+            error_message = f"Configuration validation error: {err.message}"
+            logging.error(error_message)
+            raise ValidationError(error_message)
 
         return data
 
@@ -121,5 +131,6 @@ class TemplateHandler:
         Returns:
             The processed template as a dictionary.
         """
+        logging.info("Processing jinja templates..")
         rendered_template = self._load_and_render_template(context)
         return self._convert_yaml_to_dict(rendered_template)

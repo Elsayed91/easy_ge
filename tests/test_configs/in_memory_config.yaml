@@ -1,0 +1,16 @@
+# in_memory_config.yaml
+Source:
+  Name: InMemoryTest
+  Processor: Pandas
+  Properties:
+    InMemory:
+      DataFrameName: df
+Backend:
+  ExpectationSuiteName: yellow
+  Filesystem:
+    WorkDir: ./tests/test_configs
+Report:
+  NamingRegex: '.*'
+Outputs:
+  GenerateDocs: false
+  SaveSummaryTableAsCSV: false

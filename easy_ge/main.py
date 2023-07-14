@@ -3,10 +3,15 @@ This module contains the main logic for the great_expectations_wrapper package.
 """
 
 import importlib.resources
+import logging
 from datetime import datetime
 
-from expectation_manager import ExpectationManager
-from helpers import ConfigLoader, TemplateHandler
+try:
+    from expectation_manager import ExpectationManager
+    from helpers import ConfigLoader, TemplateHandler
+except:
+    from .expectation_manager import ExpectationManager
+    from .helpers import ConfigLoader, TemplateHandler  
 
 ###############################
 # ONLY FOR LOCAL Testing
@@ -18,6 +23,13 @@ import os
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = GCP_KEY_PATH
 os.environ["JAVA_HOME"] = JAVA_HOME
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.StreamHandler()
+    ]
+)
 
 def easy_validation(config: str):
     schema_path = importlib.resources.files("easy_ge.templates").joinpath("schema.json")
@@ -39,8 +51,10 @@ def easy_validation(config: str):
     df = expectation_manager.generate_summary_table(cp_result, success_threshold)
 
     if user_config["Outputs"]["SaveSummaryTableAsCSV"]:
+        logging.info("Saving summary table as CSV...")
         filename = f"{user_config['Backend']['ExpectationSuiteName']}-{datetime.today().strftime('%Y-%m-%d')}.csv"
         df.to_csv(filename)
+    logging.info("Validation complete.")
 
     return df  # return the summary table
 

@@ -29,6 +29,15 @@ stores:
       class_name: TupleS3StoreBackend
       bucket: {{ Backend.S3.Bucket }}
       prefix: {{ Backend.S3.Prefix | default('', true) }}/expectations
+      {% if Backend.S3.BotoEndpoint or Backend.S3.Region %}
+      boto3_options:
+        {% if Backend.S3.BotoEndpoint %}
+        endpoint_url: {{ Backend.S3.BotoEndpoint }}
+        {% endif %}
+        {% if Backend.S3.Region %}
+        region_name: {{ Backend.S3.Region }}
+        {% endif %}
+      {% endif %}
       {% endif %}
   validations_store:
     class_name: ValidationsStore
@@ -45,6 +54,15 @@ stores:
       class_name: TupleS3StoreBackend
       bucket: {{ Backend.S3.Bucket }}
       prefix: {{ Backend.S3.Prefix | default('', true) }}/validations
+      {% if Backend.S3.BotoEndpoint or Backend.S3.Region %}
+      boto3_options:
+        {% if Backend.S3.BotoEndpoint %}
+        endpoint_url: {{ Backend.S3.BotoEndpoint }}
+        {% endif %}
+        {% if Backend.S3.Region %}
+        region_name: {{ Backend.S3.Region }}
+        {% endif %}
+      {% endif %}
       {% endif %}
   evaluation_parameter_store:
     class_name: EvaluationParameterStore
@@ -63,6 +81,15 @@ stores:
       class_name: TupleS3StoreBackend
       bucket: {{ Backend.S3.Bucket }}
       prefix: {{ Backend.S3.Prefix | default('', true) }}/checkpoints
+      {% if Backend.S3.BotoEndpoint or Backend.S3.Region %}
+      boto3_options:
+        {% if Backend.S3.BotoEndpoint %}
+        endpoint_url: {{ Backend.S3.BotoEndpoint }}
+        {% endif %}
+        {% if Backend.S3.Region %}
+        region_name: {{ Backend.S3.Region }}
+        {% endif %}
+      {% endif %}
       {% endif %}
 
 expectations_store_name: expectations_store
@@ -86,6 +113,15 @@ data_docs_sites:
       class_name: TupleS3StoreBackend
       bucket: {{ Backend.S3.Bucket }}
       prefix: {{ Backend.S3.Prefix | default('', true) }}/docs
+      {% if Backend.S3.BotoEndpoint or Backend.S3.Region %}
+      boto3_options:
+        {% if Backend.S3.BotoEndpoint %}
+        endpoint_url: {{ Backend.S3.BotoEndpoint }}
+        {% endif %}
+        {% if Backend.S3.Region %}
+        region_name: {{ Backend.S3.Region }}
+        {% endif %}
+      {% endif %}
       {% endif %}
     site_index_builder:
       class_name: DefaultSiteIndexBuilder
