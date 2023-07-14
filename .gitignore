@@ -19,3 +19,4 @@ tests/test_configs/validations
 ./expectations
 =1.17.106
 my_sample_gcs_config.yaml
+expectations
