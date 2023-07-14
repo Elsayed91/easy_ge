@@ -10,6 +10,7 @@ Backend:
   GCS:
     Project: "my_project"
     Bucket: "my_bucket"
+    Prefix: great_expectations
 
 Report:
   NamingRegex: "%Y%m%d%H%M-mydata"

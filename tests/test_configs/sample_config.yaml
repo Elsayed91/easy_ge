@@ -1,20 +1,14 @@
 Source:
-  Name: MyTaxiDataxd # An assigned name for the data source that will be used
+  Name: test # An assigned name for the data source that will be used
   Processor: Pandas # Can be "SparkDF" or "Pandas"
   Properties: 
     # InMemory:
-    #   DataFrameName: df # Only for "FileSystem"
+    #   DataFrameName: df
     File:
-      FilePath: "tests/test_configs/sample_file.csv" # Only for "FileSystem"
+      FilePath: "tests/test_configs/sample_file.csv"
 
 Backend:
   ExpectationSuiteName: yellow
-  # Filesystem:
-  #   WorkDir: "/home/lestrang/wrapexp"
-  # GCS:
-  #   Project: Stellarismusv5
-  #   Bucket: docs-27d8e4c12f
-  #   Prefix: great_expectations
   S3:
     Bucket: mybucket
     BotoEndpoint: "http://localhost:4566"

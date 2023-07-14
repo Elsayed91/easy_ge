@@ -12,6 +12,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: 'test'
+      AWS_SECRET_ACCESS_KEY: 'test'
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
@@ -31,8 +34,8 @@ jobs:
     - run: poetry run pytest tests/ -s
     - name: Integration Test with Localstack
       run: |
-        docker pull localstack/localstack         # Make sure to pull the latest version of the image
-        bash tests/integration/run_integration.sh
+        docker pull localstack/localstack
+        poetry run bash tests/integration/run_integration.sh
 
   build-docker:
     needs: test
