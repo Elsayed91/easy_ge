@@ -32,7 +32,7 @@ def local_file():
 def expectations():
     with open("tests/test_configs/expectations/yellow.json") as f:
         return json.load(f)
-
+    
 def test_easy_validation_with_local_file(local_file, expectations):
     # Load configuration template
     with open("tests/test_configs/local_file_config.yaml", 'r') as stream:

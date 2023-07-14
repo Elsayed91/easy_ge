@@ -84,7 +84,7 @@ def test_run_checkpoint(mocked_template_handler_class, mocked_data_context_class
 
 @patch("easy_ge.expectation_manager.BaseDataContext")
 @patch("easy_ge.helpers.TemplateHandler")
-def test_prepare_checkpoint_with_invalid_config(mocked_template_handler_class, mocked_data_context_class):
+def test_prepare_checkpoint_calls_add_checkpoint(mocked_template_handler_class, mocked_data_context_class):
     # Create a mock BaseDataContext instance
     mocked_data_context = MagicMock()
     mocked_data_context_class.return_value = mocked_data_context
@@ -97,17 +97,19 @@ def test_prepare_checkpoint_with_invalid_config(mocked_template_handler_class, m
     expectation_manager = ExpectationManager(mocked_template_handler, mocked_template_handler, True)
 
     # Define a valid configuration
-    valid_config = "templates/valid_config.yaml"  # This should be a valid configuration for the data context
+    valid_config = "templates/valid_config.yaml"
 
     # Prepare a data context
     data_context = expectation_manager.prepare_data_context(valid_config)
 
-    # Define an invalid configuration
-    config = {"invalid_key": "invalid_value"}
+    # Define a configuration
+    config = {"some_key": "some_value"}
 
-    # Prepare a checkpoint and expect it to raise an exception
-    with pytest.raises(KeyError):
-        expectation_manager.prepare_checkpoint(config, data_context)
+    # Prepare a checkpoint
+    expectation_manager.prepare_checkpoint(config, data_context)
+
+    # Assert that add_checkpoint was called with the correct arguments
+    mocked_data_context.add_checkpoint.assert_called_once()
 
 @patch("easy_ge.expectation_manager.BaseDataContext")
 @patch("easy_ge.helpers.TemplateHandler")

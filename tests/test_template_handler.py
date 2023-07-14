@@ -1,8 +1,9 @@
 # tests/test_template_handler.py
 
 import pytest
-from easy_ge.helpers import TemplateHandler
 from jinja2 import Template, TemplateNotFound
+
+from easy_ge.helpers import TemplateHandler
 
 
 def test_load_and_render_template():

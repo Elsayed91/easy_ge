@@ -1,8 +1,9 @@
 import pandas as pd
 import pytest
+from great_expectations.exceptions import GreatExpectationsError
+
 from easy_ge.helpers import ValidationError
 from easy_ge.main import easy_validation
-from great_expectations.exceptions import GreatExpectationsError
 
 
 def test_easy_validation_with_invalid_config():

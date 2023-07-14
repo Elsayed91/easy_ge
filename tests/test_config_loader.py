@@ -1,4 +1,5 @@
 import pytest
+
 from easy_ge.helpers import ConfigLoader, ValidationError
 
 
