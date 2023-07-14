@@ -61,7 +61,7 @@ class ExpectationManager:
         """
         logging.info("Preparing checkpoint...")
         cp_config = self.cp_template_handler.process_template(config)
-        data_context.add_checkpoint(**cp_config)
+        data_context.add_or_update_checkpoint(**cp_config)
 
     def run_checkpoint(self, config: dict[str, Any], data_context: AbstractDataContext) -> dict[str, Any]:
         """

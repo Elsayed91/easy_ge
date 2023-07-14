@@ -5,21 +5,19 @@
 <br />
 <div align="center">
   <a href="">
-    <img src="images/gewrap.png" alt="Logo" width="80" height="80">
+    <img src="images/gewrap.png" alt="Logo" width="150" height="150">
   </a>
 
-  <h3 align="center">Easy G.E</h3> 
-    <p align="center">Making Great Expectations Data The Easiest Part of the Pipeline</p>
+  <h3 align="center">Easy G.E — A Great Expectations Wrapper</h3> 
+    <p align="center">Making Data Validation The Easiest Part of the Pipeline</p>
   <!-- <img src="https://img.shields.io/badge/build-passing-brightgreen"> <img src="https://img.shields.io/badge/license-MIT-blue"> -->
 
 </div>
 
 
 
-
-Great Expectations is a crucial tool for validating, documenting, and profiling your data. However, it may be a bit challenging for those who are not regular users. That's where **Easy G.E** (pronounced as _ee-zee-jee-ee_) comes in! This package makes it straightforward for anyone to use Great Expectations, from the data newbie to the seasoned data scientist.
-
-Easy G.E provides an easy-to-use configuration system that lets you manage your data expectations in an intuitive way. With support for different data formats and flexible storage options, it's like having a data quality team in your pocket!
+Ever wanted to implement some data quality checks as a part of your pipeline, but found yet another learning curve that you need to go through if you wanna use **Great Expectations**? Well, that's where **Easy G.E** (pronounced as _ee-zee-jee-ee_) comes in! For most common use cases, this package has your back and you will be ready to run your tests within minutes without having to ever go through Great Expectations every changing documentation.
+**Great Expectations** is a crucial tool for validating the quality of your data. However, it may be a bit challenging for those who are not regular users. 
 
 
 ### Quick Start
