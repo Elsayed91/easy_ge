@@ -1,0 +1,25 @@
+{
+    "data_asset_type": null,
+    "expectation_suite_name": "yellow_expectations",
+    "expectations": [
+        {
+            "expectation_type": "expect_table_columns_to_match_ordered_list",
+            "kwargs": {
+                "column_list": [
+                    "PULocationID",
+                    "DOLocationID"
+                ]
+            },
+            "meta": {}
+        },
+        {
+            "expectation_type": "expect_column_max_to_be_between",
+            "kwargs": {
+                "column": "DOLocationID",
+                "max_value": 265,
+                "min_value": 1
+            },
+            "meta": {}
+        }
+    ]
+}
