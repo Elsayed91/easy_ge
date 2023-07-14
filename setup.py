@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="easy_ge",
-    version="0.1.0",
+    version="0.1.6",
     description="A package for simplified data validation with Great Expectations",
     author="Elsayed91",
     author_email="islam.elsayed.da@gmail.com",
