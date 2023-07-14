@@ -17,8 +17,7 @@
             "kwargs": {
                 "column": "DOLocationID",
                 "max_value": 265,
-                "min_value": 1,
-                "mostly": 0.9
+                "min_value": 1
             },
             "meta": {}
         }

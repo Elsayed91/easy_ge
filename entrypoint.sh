@@ -9,4 +9,4 @@ if [ -n "$S3_ACCESS_KEY" ] && [ -n "$S3_SECRET_KEY" ]; then
 fi
 
 # Run the command inside the virtual environment created by poetry
-poetry run python -m /app/easy_ge/entrypoint.py "$@"
+poetry run python -m easy_ge.entrypoint "$@"

@@ -55,7 +55,7 @@ def test_prepare_checkpoint(mocked_template_handler_class, mocked_data_context_c
 
     # Check if the correct methods were called
     mocked_template_handler.process_template.assert_called_once()
-    mocked_data_context.add_checkpoint.assert_called_once()
+    mocked_data_context.add_or_update_checkpoint.assert_called_once()
 
 
 @patch("easy_ge.expectation_manager.BaseDataContext")
@@ -109,7 +109,7 @@ def test_prepare_checkpoint_calls_add_checkpoint(mocked_template_handler_class, 
     expectation_manager.prepare_checkpoint(config, data_context)
 
     # Assert that add_checkpoint was called with the correct arguments
-    mocked_data_context.add_checkpoint.assert_called_once()
+    mocked_data_context.add_or_update_checkpoint.assert_called_once()
 
 @patch("easy_ge.expectation_manager.BaseDataContext")
 @patch("easy_ge.helpers.TemplateHandler")
