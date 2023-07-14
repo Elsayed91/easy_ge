@@ -67,8 +67,7 @@ We provide two Docker images for running the validation: one with Python 3.10 an
 ```bash
 # Pull and run with Python 3.10
 docker pull elsayed91/easy_ge:python3.10
-docker run -v /path/to/your/config:/app/config elsayed91/easy_ge:python3.10 /app/config/config.yaml
-
+docker run -v /path/to/config.yaml:/data/config.yaml image_name
 ```
 
 ### Key Features
@@ -95,6 +94,15 @@ We're planning to incorporate Azure into our list of supported cloud storage pla
 
 Easy G.E is not possible without the fantastic work done by the Great Expectations team. A huge thank you to them for making data quality expectations a reality!
 
+## Known Issues
+
+### Issue with jsonschema in Python 3.10
+
+There is a known issue with the `jsonschema` package when running this project in Python 3.10. This may cause an error when trying to validate the configuration file against the JSON schema.
+
+**Workaround:**
+
+We recommend using a virtual environment
 
 ## Contribution & Support
 

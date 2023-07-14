@@ -7,21 +7,15 @@ import logging
 from datetime import datetime
 
 try:
-    from expectation_manager import ExpectationManager
-    from helpers import ConfigLoader, TemplateHandler
-except:
     from easy_ge.expectation_manager import ExpectationManager
     from easy_ge.helpers import ConfigLoader, TemplateHandler  
+except:
+    from expectation_manager import ExpectationManager
+    from helpers import ConfigLoader, TemplateHandler
 
 ###############################
 # ONLY FOR LOCAL Testing
 ###############################
-GCP_KEY_PATH = "gcp_key_spark.json"
-JAVA_HOME = "/usr/lib/jvm/java-11-openjdk-amd64"
-import os
-
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = GCP_KEY_PATH
-os.environ["JAVA_HOME"] = JAVA_HOME
 
 logging.basicConfig(
     level=logging.INFO,
@@ -30,6 +24,8 @@ logging.basicConfig(
         logging.StreamHandler()
     ]
 )
+logging.getLogger('great_expectations.data_context.data_context.abstract_data_context').setLevel(logging.WARNING)
+
 
 def easy_validation(config: str):
     schema_path = importlib.resources.files("easy_ge.templates").joinpath("schema.json")
@@ -53,11 +49,7 @@ def easy_validation(config: str):
     if user_config["Outputs"]["SaveSummaryTableAsCSV"]:
         logging.info("Saving summary table as CSV...")
         filename = f"{user_config['Backend']['ExpectationSuiteName']}-{datetime.today().strftime('%Y-%m-%d')}.csv"
-        df.to_csv(filename)
+        df.to_csv(filename, index=False)
     logging.info("Validation complete.")
 
     return df  # return the summary table
-
-if __name__ == "__main__":
-    config_path = "sample_config.yaml"
-    df = easy_validation(config_path)

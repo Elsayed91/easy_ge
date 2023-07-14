@@ -25,6 +25,7 @@ logging.basicConfig(
         logging.StreamHandler()
     ]
 )
+logging.getLogger('great_expectations.data_context.data_context.abstract_data_context').setLevel(logging.WARNING)
 
 class ExpectationManager:
     """
