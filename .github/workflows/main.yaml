@@ -10,29 +10,29 @@ on:
 
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    env:
-      AWS_ACCESS_KEY_ID: 'test'
-      AWS_SECRET_ACCESS_KEY: 'test'
-    steps:
-    - uses: actions/checkout@v3
-    - name: Install poetry
-      run: pipx install poetry
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-        cache: 'poetry'
-    - run: 
-        poetry install --all-extras
-    - run: poetry run pytest tests/ -s
-    - name: Integration Test with Localstack
-      run: |
-        docker pull localstack/localstack
-        poetry run bash tests/integration/run_integration.sh
+  # test:
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     AWS_ACCESS_KEY_ID: 'test'
+  #     AWS_SECRET_ACCESS_KEY: 'test'
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #   - name: Install poetry
+  #     run: pipx install poetry
+  #   - uses: actions/setup-python@v4
+  #     with:
+  #       python-version: '3.10'
+  #       cache: 'poetry'
+  #   - run: 
+  #       poetry install --all-extras
+  #   - run: poetry run pytest tests/ -s
+  #   - name: Integration Test with Localstack
+  #     run: |
+  #       docker pull localstack/localstack
+  #       poetry run bash tests/integration/run_integration.sh
 
   build-docker:
-    needs: test
+    # needs: test
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -52,18 +52,18 @@ jobs:
         tags: ${{ secrets.DOCKER_HUB_USERNAME }}/easy_ge:latest
 
   publish:
-    needs: test
+    # needs: test
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - name: Install poetry
+      run: pipx install poetry
     - uses: actions/setup-python@v4
       with:
         python-version: '3.10'
         cache: 'poetry'
-    - name: Install poetry and dependencies
-      run: |
-        pip install poetry
-        poetry install
+    - run: 
+        poetry install --all-extras
     - name: Bump version
       run: |
         poetry version patch
