@@ -1,8 +1,7 @@
 #!/bin/bash
 set -e
 
-# docker pull localstack/localstack
-poetry run SERVICES=s3 localstack start -d
+SERVICES=s3 localstack start -d
 localstack wait -t 30 
 echo "Startup complete"
 
