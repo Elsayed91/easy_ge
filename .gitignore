@@ -16,4 +16,4 @@ __pycache__/
 tests/test_configs/checkpoints
 tests/test_configs/docs
 tests/test_configs/validations
-expectations/
+./expectations/
