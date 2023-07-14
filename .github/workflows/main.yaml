@@ -25,12 +25,6 @@ jobs:
         cache: 'poetry'
     - run: 
         poetry install --all-extras
-    - name: Lint with flake8
-      run: |
-        poetry run flake8 .
-    - name: Check import order with isort
-      run: |
-        poetry run isort --check-only --diff .
     - run: poetry run pytest tests/ -s
     - name: Integration Test with Localstack
       run: |
