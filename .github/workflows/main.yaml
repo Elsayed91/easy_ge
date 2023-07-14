@@ -17,14 +17,14 @@ jobs:
       AWS_SECRET_ACCESS_KEY: 'test'
     steps:
     - uses: actions/checkout@v3
+    - name: Install poetry
+      run: pipx install poetry
     - uses: actions/setup-python@v4
       with:
         python-version: '3.10'
         cache: 'poetry'
-    - name: Install poetry and dependencies
-      run: |
-        pip install poetry
-        poetry install --dev --all-extras
+    - run: 
+        poetry install --all-extras
     - name: Lint with flake8
       run: |
         poetry run flake8 .
