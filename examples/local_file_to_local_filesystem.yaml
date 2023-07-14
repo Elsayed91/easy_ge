@@ -1,0 +1,21 @@
+# This configuration reads a file file from the local file system and stores the validation results on the local file system as well.
+
+Source:
+  Name: MyData
+  Processor: Pandas
+  Properties:
+    File:
+      FilePath: "/path/to/your/data.csv"
+      
+Backend:
+  ExpectationSuiteName: your_expectation_suite
+  Filesystem:
+    WorkDir: /path/to/your/local/workdir
+    
+Report:
+  NamingRegex: "%Y%m%d%H%M-report"
+  
+Outputs:
+  GenerateDocs: True
+  SaveSummaryTableAsCSV: True
+  FailureThreshold: 90

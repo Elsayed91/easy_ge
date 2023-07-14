@@ -1,0 +1,21 @@
+Source:
+  Name: your_report_name
+  Processor: Pandas
+  Properties:
+    InMemory:
+      DataFrameName: your_dataframe
+      
+Backend:
+  ExpectationSuiteName: your_expectation_suite
+  S3:
+    Bucket: your_bucket_name
+    BotoEndpoint: http://localhost:4566
+    Region: your_region_name
+    
+Report:
+  NamingRegex: "%Y%m%d%H%M-report"
+  
+Outputs:
+  GenerateDocs: True
+  SaveSummaryTableAsCSV: True
+  FailureThreshold: 90

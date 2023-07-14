@@ -1,0 +1,78 @@
+# ----------------------------------- #
+#              CONFIG GUIDE           #
+# ----------------------------------- #
+# Section      | Option               | Type    | Description                          | Required
+# ----------------------------------- #
+# Source       | Name                 | String  | Assigned name for the data source    | Yes
+# Source       | Processor            | String  | Can be "SparkDF" or "Pandas"         | Yes
+# Source       | Properties:File      | String  | Path to the data file                | One of "File" or "InMemory" is required
+# Source       | Properties:InMemory  | String  | Name of the dataframe if in memory   | One of "File" or "InMemory" is required
+# Backend      | ExpectationSuiteName | String  | Expectation suite JSON file name     | Yes
+# Backend      | Filesystem           | String  | Working directory if Filesystem used | One of "Filesystem", "GCS", or "S3" is required
+# Backend      | GCS:Project          | String  | The GCS project                      | Required if GCS is chosen
+# Backend      | GCS:Bucket           | String  | The GCS bucket                       | Required if GCS is chosen
+# Backend      | GCS:Prefix           | String  | Optional prefix for GCS storage      | No
+# Backend      | S3:Bucket            | String  | The S3 bucket                        | Required if S3 is chosen
+# Backend      | S3:Prefix            | String  | Optional prefix for S3 storage       | No
+# Backend      | S3:BotoEndpoint      | String  | Optional endpoint for S3 boto        | No
+# Backend      | S3:Region            | String  | Optional region for S3               | No
+# Report       | NamingRegex          | String  | Report naming format                 | Yes
+# Outputs      | GenerateDocs         | Boolean | If true, docs will be generated      | Yes
+# Outputs      | SaveSummaryTableAsCSV| Boolean | If true, a summary table is saved    | No
+# Outputs      | FailureThreshold     | Number  | Threshold for failure (0-100)        | No
+# ----------------------------------- #
+
+
+# - You can use ${VAR} syntax anywhere in the file to replace them with the values
+# of variables having the same name that exist in your python environment at runtime
+
+Source:
+  # Mandatory fields
+  Name: test  # An assigned name for the data source that will be used
+  Processor: Pandas  # Can be "SparkDF" or "Pandas"
+  Properties:
+    # Only one of the following options (File, InMemory) can be used
+    # File option:
+    File:
+      FilePath: "tests/test_configs/sample_file.csv"
+    # InMemory option:
+    InMemory:
+      DataFrameName: df # name of the variable referencing the df in global scope of your module
+
+Backend:
+  # Mandatory fields
+  ExpectationSuiteName: yellow #expectation suite json file name but without the .json
+
+  # Only one of the following options (Filesystem, GCS, S3) can be used
+  # Filesystem option:
+  Filesystem:
+    WorkDir: /path/to/workdir
+
+  # GCS option: 
+  # Must be authenticated already before using the package.
+  # Must use pip install easy-ge[google]
+  GCS:
+    Project: ${PROJECT} 
+    Bucket: ${BUCKET}
+    # Optional fields
+    Prefix: your_prefix
+
+  # S3 option:
+  S3:
+    # Must be authenticated already before using the package.
+    Bucket: mybucket
+    # Optional fields
+    Prefix: your_prefix
+    BotoEndpoint: http://localhost:4566
+    Region: your_region
+
+Report:
+  # Mandatory field
+  NamingRegex: "%Y%m%d%H%M-yellow" # how your reports will be named
+
+Outputs:
+  # Mandatory field
+  GenerateDocs: True
+  # Optional fields
+  SaveSummaryTableAsCSV: True
+  FailureThreshold: 90

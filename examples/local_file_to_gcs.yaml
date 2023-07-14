@@ -1,0 +1,20 @@
+Source:
+  Name: your_report_name
+  Processor: Pandas
+  Properties:
+    File:
+      FilePath: "/path/to/your/data.csv"
+      
+Backend:
+  ExpectationSuiteName: your_expectation_suite
+  GCS:
+    Project: ${PROJECT} 
+    Bucket: ${BUCKET}
+    
+Report:
+  NamingRegex: "%Y%m%d%H%M-report"
+  
+Outputs:
+  GenerateDocs: True
+  SaveSummaryTableAsCSV: True
+  FailureThreshold: 90
