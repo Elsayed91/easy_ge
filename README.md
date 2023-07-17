@@ -49,9 +49,7 @@ pip install easy-ge # for gcs use pip install easy-ge[google]
 }
 
 ```
-
-Check [here](examples/example_expectation_suite.json) for a more extensive example, [here](expectation_suite.md) for a tutorial, and visit the [Expectations Gallery](https://greatexpectations.io/expectations/?viewType=Completeness&filterType=Backend+support&showFilters=true&subFilterValues=) for a full list of available Expectations (and their options) to use for your own tests.
-
+Check [here](examples/example_expectation_suite.json) for a more extensive example, [here](docs/expectation_suite.md) for a tutorial, and visit the [Expectations Gallery](https://greatexpectations.io/expectations/?viewType=Completeness&filterType=Backend+support&showFilters=true&subFilterValues=) for a full list of available Expectations (and their options) to use for your own tests.
     
 2.  **Create Your Configuration File:**
     
@@ -131,7 +129,7 @@ Enhancements on the radar:
 -   Profiler Support.
 -   Support for custom Expectations.
 -   Greater flexibility in Backend Setup: While the current design simplifies processes by using the same backend for all stores, providing options for customization in the future is on the agenda.
--   Defining Expectations as `Yaml` and/or in the same config file.
+-   Defining Expectations as `YAML` and/or in the same config file.
  
 
 ## Known Issues
