@@ -10,3 +10,5 @@ fi
 
 # Run the command inside the virtual environment created by poetry
 poetry run python -m easy_ge.entrypoint "$@"
+
+

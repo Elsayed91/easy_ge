@@ -7,17 +7,17 @@
   <p align="center">Simplifying Data Validation in Your Pipeline</p> 
   </div>
 
-Are you looking to integrate data quality checks into your pipeline but daunted by the
-learning curve associated with **Great Expectations**? Let **Easy G.E** (_pronounced
-ee-zee-jee-ee_) come to your rescue. It is designed for common use cases, enabling you to
+Want to integrate data quality checks into your pipeline but daunted by the
+learning curve associated with **Great Expectations**? **Easy G.E** (_pronounced
+ee-zee-jee-ee_) comes to rescue. It is designed for common use cases, enabling you to
 set up tests in minutes and saving you from navigating through Great Expectations'
-continuously evolving documentation.
+continuously evolving (or rather ever-changing) documentation.
 
 ## Quick Start
 
 ### Installation
 
-Easy G.E has been tested exclusively on Python versions >= 3.10.
+Note: Easy G.E has been tested exclusively on Python versions >= 3.10.
 
 Installation is via pip:
 
@@ -27,7 +27,7 @@ pip install easy-ge # for gcs use pip install easy-ge[google]
 
 ### Usage
 
-1.  **Create Your Expectation Suite:** This comprises the tests that will be run on your table and/or columns. Here is an example:
+1.  **Create Your Expectation Suite:** This comprises the tests that will be run on your table and/or columns. Below is an example of the content of an expectation suite json file:
 
 ```json
 {
@@ -49,10 +49,10 @@ pip install easy-ge # for gcs use pip install easy-ge[google]
 
 ```
 
-Check [here](examples/example_expectation_suite.json) for a more extensive example, and visit the [Expectations Gallery](https://greatexpectations.io/expectations/?viewType=Completeness&filterType=Backend+support&showFilters=true&subFilterValues=) for a full list of available Expectations.
+Check [here](examples/example_expectation_suite.json) for a more extensive example, and visit the [Expectations Gallery](https://greatexpectations.io/expectations/?viewType=Completeness&filterType=Backend+support&showFilters=true&subFilterValues=) for a full list of available Expectations to use for your own tests.
 
     
-2.  **Create Your Configuration File:** Something Like this:
+2.  **Create Your Configuration File:**
     
 
 ```yaml
@@ -78,7 +78,9 @@ Outputs:
   GenerateDocs: True
 
 ```
-You can find different examples of configurations in [this directory](examples/).
+The above is an example. You can find different examples of configurations in [this directory](examples/).
+
+
 
 3. **Position the Expectation Suite:** Place the suite file where you want your docs to be stored. For instance, if you want your docs in a GCS bucket, put the expectation suite in an `expectations` folder within that bucket. this bucket has to be in the same location as your backend.
 
@@ -117,32 +119,40 @@ docker run -v /path/to/config.yaml:/app/config.yaml \
     elsayed91/easy-ge --config /app/config.yaml
 ```
 
+## Spark
+Spark has been tested and is functional, howeverit's worth noting that PySpark is not included as a dependency. This is due to the requirement for Spark and PySpark versions to align perfectly. To utilize the `SparkDF` option, please ensure that your environment has both Spark and PySpark installed. 
 
 ## Roadmap
 
-On the todo list are:
+Enhancements on the radar:
 
-1. Azure
-2. Profiler
-3. Custom Expectations support
-4. Flexible Backend Setup; the current implementation simplifies the matter by using the same backend for all stores, this will remain the main appraoch, but providing the option to customize them if needed is on the to-do list.
+-   Integration with Azure.
+-   Profiler Support.
+-   Support for custom Expectations.
+-   Greater flexibility in Backend Setup: While the current design simplifies processes by using the same backend for all stores, providing options for customization in the future is on the agenda.
 
 
 
 ## Known Issues
 
-### Issue with jsonschema
+### jsonschema
 
-If you face any issues when running the package because `jsonschema`, installing the package in a virtualenv will resolve it.
-`jsonschema` could run into dependency issues if the package is not installed in a virtualenv. 
+If you encounter problems running the package due to `jsonschema`, installing the package in a virtual environment should resolve the issue. Dependency conflicts with `jsonschema` may occur when the package is not installed in a virtual environment.
 
 
 ### Acknowledgements
 
-Easy G.E wouldn't be possible without the substantial efforts by the Great Expectations team.
+- Easy G.E is an indirect product of the substantial efforts by the Great Expectations team.
+- `ChatGPT` for helping with crafting some of the unit tests. 
 
 ## Contribution & Support
 
-Should you face any issues or have queries, please open an issue.
-Contributions are welcome, be it through pull requests or feature requests.
+Should you face any issues or have inqueries, please open an issue. 
 
+The package was designed with extensibility in mind.
+Adjust `schema.json` if you want to add a new field in the YAML, then see how you want to use the new value.
+If you are interested in contributing, you'd find it a breeze for the most part. 
+
+The package was designed with extensibility in mind. To add a new field in the YAML, simply adjust the `schema.json` accordingly, and explore the possibilities of utilizing the new value in the `expectation_manager` class or the `run_validation` function. 
+
+What am trying to say is, feel free to contribute. 
