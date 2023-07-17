@@ -2,7 +2,7 @@
 
 
 <div align="center"> 
-  <a href=""> <img src="images/gewrap.png" alt="Logo" width="150" height="150"> </a>
+  <a href=""> <img src="docs/images/gewrap.png" alt="Logo" width="150" height="150"> </a>
   <h3 align="center">Easy G.E — Your Friendly Great Expectations Wrapper</h3> 
   <p align="center">Simplifying Data Validation in Your Pipeline</p> 
   </div>

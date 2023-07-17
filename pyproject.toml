@@ -1,10 +1,13 @@
 [tool.poetry]
 name = "easy_ge"
 version = "0.1.10"
-description = "A package that abstracts the complexity of Great Expectations away. At least for straight forward use cases."
+description = "A package that simplifies usage of Great Expectations tool for Data Validation."
 authors = ["Elsayed91 <elsayed.is@outlook.com>"]
-readme = "README.md"
+readme = "docs/pypi_readme.txt"
 packages = [{include = "easy_ge"}]
+homepage = "https://github.com/Elsayed91/easy_ge"
+repository = "https://github.com/Elsayed91/easy_ge"
+keywords = ["Great Expectations", "data quality", "data validation"]
 
 [tool.poetry.dependencies]
 python = "^3.10, <3.13"
