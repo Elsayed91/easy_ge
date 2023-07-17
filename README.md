@@ -49,7 +49,7 @@ pip install easy-ge # for gcs use pip install easy-ge[google]
 }
 
 ```
-Check [here](examples/example_expectation_suite.json) for a more extensive example, [here](docs/expectation_suite.md) for a tutorial, and visit the [Expectations Gallery](https://greatexpectations.io/expectations/?viewType=Completeness&filterType=Backend+support&showFilters=true&subFilterValues=) for a full list of available Expectations (and their options) to use for your own tests.
+Check [here](docs/examples/example_expectation_suite.json) for a more extensive example, [here](docs/expectation_suite.md) for a tutorial, and visit the [Expectations Gallery](https://greatexpectations.io/expectations/?viewType=Completeness&filterType=Backend+support&showFilters=true&subFilterValues=) for a full list of available Expectations (and their options) to use for your own tests.
     
 2.  **Create Your Configuration File:**
     
@@ -77,7 +77,7 @@ Outputs:
   GenerateDocs: True
 
 ```
-The above is an example. You can find different examples of configurations in [this directory](examples/).
+The above is an example. You can find different examples of configurations in [this directory](docs/examples/).
 
 
 
