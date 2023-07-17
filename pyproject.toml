@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "easy_ge"
-version = "0.1.10"
+version = "0.1.11"
 description = "A package that simplifies usage of Great Expectations tool for Data Validation."
 authors = ["Elsayed91 <elsayed.is@outlook.com>"]
 readme = "docs/pypi_readme.txt"
