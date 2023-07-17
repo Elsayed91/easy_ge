@@ -4,7 +4,6 @@ great_expectations_wrapper/__pycache__
 gcp_key_spark.json
 yellow_tripdata_2021-01.parquet:Zone.Identifier
 validations
-docs
 .pytest_cache
 easy_ge/__pycache__
 tests/__pycache__
