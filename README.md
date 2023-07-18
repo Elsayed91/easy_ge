@@ -15,6 +15,7 @@ rapidly changing documentation.
 
 
 ## Quick Start
+If you prefer video tutorials, check this low budget [5 minute tutorial](https://www.youtube.com/watch?v=9v8mlDb2oRo) out.
 
 ### Installation
 
@@ -149,10 +150,11 @@ If you encounter problems running the package due to `jsonschema`, installing th
 
 Should you face any issues or have inqueries, please open an issue. 
 
-The package was designed with extensibility in mind.
-Adjust `schema.json` if you want to add a new field in the YAML, then see how you want to use the new value.
-If you are interested in contributing, you'd find it a breeze for the most part. 
 
-The package was designed with extensibility in mind. To add a new field in the YAML, simply adjust the `schema.json` accordingly, and explore the possibilities of utilizing the new value in the `expectation_manager` class or the `run_validation` function. 
+Contributions are welcome! The package was designed to support extensibility and easy
+integration of new functionalities. If you wish to add a new field to the YAML
+configuration, simply adjust the `schema.json` file to include the new field and explore
+how you can utilize its value in the `expectation_manager` class or the `run_validation`
+function.
 
-What am trying to say is, feel free to contribute. 
+
