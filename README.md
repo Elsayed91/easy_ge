@@ -115,8 +115,9 @@ docker run -v /path/to/config.yaml:/app/config.yaml \
     -e GCS_CREDENTIALS_FILE="key.json" \ #if using GCS
     -e S3_ACCESS_KEY="your_aws_access_key" \ #if using S3
     -e S3_SECRET_KEY="your_aws_secret_key" \ #if using S3
-    elsayed91/easy-ge --config /app/config.yaml
+    elsayed91/easy_ge --config /app/config.yaml
 ```
+
 
 ## Spark
 Spark has been tested and is functional, howeverit's worth noting that PySpark is not included as a dependency. This is due to the requirement for Spark and PySpark versions to align perfectly. To utilize the `SparkDF` option, please ensure that your environment has both Spark and PySpark installed. 

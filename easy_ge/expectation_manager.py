@@ -4,6 +4,7 @@
 This module contains a class for managing Great Expectations operations.
 """
 
+import logging
 from typing import Any, Optional
 
 import pandas as pd
@@ -11,12 +12,7 @@ from great_expectations.data_context import (AbstractDataContext,
                                              BaseDataContext)
 from great_expectations.data_context.types.base import DataContextConfig
 
-try:
-    from easy_ge.helpers import TemplateHandler
-except:
-    from helpers import TemplateHandler
-
-import logging
+from easy_ge.helpers import TemplateHandler
 
 logging.basicConfig(
     level=logging.INFO,
@@ -47,9 +43,19 @@ class ExpectationManager:
         Returns:
             A BaseDataContext object.
         """
+        if not isinstance(config, dict):
+            raise TypeError("config must be a dictionary.")
+        if config == {}:
+            raise Exception("Empty dictionary passed to the function.")
         logging.info("Preparing data context...")
         ge_config = self.ge_template_handler.process_template(config)
-        return BaseDataContext(DataContextConfig(**ge_config))
+        try:
+            return BaseDataContext(DataContextConfig(**ge_config))
+        except Exception as e:
+            logging.error(f'Error while preparing data context: {e}')
+            raise e
+
+
 
     def prepare_checkpoint(self, config: dict[str, Any], data_context: AbstractDataContext):
         """

@@ -33,6 +33,7 @@ flake8 = "^6.0.0"
 isort = "^5.12.0"
 localstack = "^2.1.0"
 awscli-local = "^0.20"
+pytest-mock = "^3.11.1"
 
 [tool.poetry.extras]
 aws = ["s3fs"]
