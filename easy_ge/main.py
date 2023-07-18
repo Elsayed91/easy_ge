@@ -46,7 +46,7 @@ def easy_validation(config: str):
     success_threshold = user_config["Outputs"].get("FailureThreshold", None)
     df = expectation_manager.generate_summary_table(cp_result, success_threshold)
 
-    if user_config["Outputs"]["SaveSummaryTableAsCSV"]:
+    if user_config["Outputs"].get("SaveSummaryTableAsCSV", False):
         logging.info("Saving summary table as CSV...")
         filename = f"{user_config['Backend']['ExpectationSuiteName']}-{datetime.today().strftime('%Y-%m-%d')}.csv"
         df.to_csv(filename, index=False)
