@@ -11,7 +11,7 @@ Want to integrate data quality checks into your pipeline but daunted by the
 learning curve associated with **Great Expectations**? **Easy G.E** (_pronounced
 ee-zee-jee-ee_) comes to rescue. It is designed for common use cases (In Memory/File), enabling you to
 set up tests in minutes and saving you from navigating through Great Expectations'
-continuously evolving (or rather ever-changing) documentation.
+rapidly changing documentation.
 
 
 ## Quick Start
