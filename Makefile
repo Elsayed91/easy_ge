@@ -21,4 +21,4 @@ gitd:
 	@git add . && git commit -m "$$(openssl rand -hex 5)" && git push -u origin dev
 
 git_merge:
-	@git checkout main && git merge dev && git push origin main
+	@git checkout main && git merge dev && git push origin main && git checkout dev
