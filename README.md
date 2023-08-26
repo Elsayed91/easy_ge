@@ -7,6 +7,8 @@
   <p align="center">Simplifying Data Validation in Your Pipeline</p> 
   </div>
 
+**This has been archived, feel free to check [Easy Expectations](https://github.com/Elsayed91/easy_expectations) **
+
 Want to integrate data quality checks into your pipeline but daunted by the
 learning curve associated with **Great Expectations**? **Easy G.E** (_pronounced
 ee-zee-jee-ee_) comes to rescue. It is designed for common use cases (In Memory/File), enabling you to
